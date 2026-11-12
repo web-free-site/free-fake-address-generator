@@ -1,0 +1,12 @@
+Upstream open-source components used by Free Fake Address Generator:
+
+1. @faker-js/faker — https://github.com/faker-js/faker — MIT License
+   Core library for generating localized fake street addresses, cities, zips, and phone numbers.
+
+2. ehalt/fake-address-generator — https://github.com/ehalt/fake-address-generator — see repository
+   Simple browser-side demo that inspired the one-click generate UX (legacy Faker card pattern).
+
+3. Site shell patterns (ads, prerender, Cloudflare Workers assets) align with web-free-site/free-invoice-generator,
+   which is based on tuanpham-dev/react-invoice-generator (MIT).
+
+Full MIT text for @faker-js/faker is included in node_modules/@faker-js/faker/LICENSE after npm install.
