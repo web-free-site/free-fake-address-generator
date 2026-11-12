@@ -1,6 +1,6 @@
 {
-  "short_name": "Invoice Generator",
-  "name": "React Invoice Generator",
+  "short_name": "Fake Address",
+  "name": "Free Fake Address Generator",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1a3a5c",
+  "background_color": "#f2f3f5"
 }
