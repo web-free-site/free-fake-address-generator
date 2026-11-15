@@ -3,6 +3,8 @@ import path from 'node:path'
 
 const HOST = 'https://free-fake-address-generator.web-free.site'
 const paths = [
+  "/how-to-generate-test-addresses-for-forms",
+  "/fake-address-versus-real-address-for-testing",
   '/',
   '/us-address-generator',
   '/uk-address-generator',
