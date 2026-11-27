@@ -15,6 +15,7 @@ export const JsonLd: FC<Props> = ({ page }) => {
         '@type': 'WebApplication',
         name: SITE.name,
         url,
+        description: page.description,
         applicationCategory: 'DeveloperApplication',
         operatingSystem: 'Any',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

@@ -40,6 +40,19 @@ export function usePageMeta() {
     const ogUrl = document.querySelector('meta[property="og:url"]')
     if (ogUrl) ogUrl.setAttribute('content', canonical.href)
 
+    const ensureMeta = (selector: string, attr: 'name' | 'property', key: string, value: string) => {
+      let el = document.querySelector(selector) as HTMLMetaElement | null
+      if (el) el.setAttribute('content', value)
+      else {
+        el = document.createElement('meta')
+        el.setAttribute(attr, key)
+        el.content = value
+        document.head.appendChild(el)
+      }
+    }
+    ensureMeta('meta[name="twitter:title"]', 'name', 'twitter:title', page.title)
+    ensureMeta('meta[name="twitter:description"]', 'name', 'twitter:description', page.description)
+
     document.documentElement.lang = page.locale
   }, [location.pathname, page])
 }

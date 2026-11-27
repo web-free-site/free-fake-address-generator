@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Locale, t } from '../i18n/messages'
 import { AdSlot } from '../components/ads/AdSlot'
-import { SEO_PAGES } from '../seo/pages'
+import { SEO_PAGES, WEB_FREE_GUIDE_URL, WEB_FREE_HUB_URL } from '../seo/pages'
 import { JsonLd } from '../components/JsonLd'
 import { AddressTool } from '../components/AddressTool'
 import { countryForSeoPath } from '../data/countries'
@@ -29,9 +29,38 @@ export const HomePage: FC<Props> = ({ locale, seoPath = '/' }) => {
       <AdSlot slot="betweenToolContent728x90" className="ad-between" />
 
       <article className="content-article">
-        {seo.paragraphs.map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
+        {seo.sections
+          ? seo.sections.map((section, si) => (
+              <div key={si}>
+                {section.heading ? <h2>{section.heading}</h2> : null}
+                {section.paragraphs?.map((p, pi) => (
+                  <p key={pi}>{p}</p>
+                ))}
+                {section.orderedList ? (
+                  <ol>
+                    {section.orderedList.map((item, li) => (
+                      <li key={li}>{item}</li>
+                    ))}
+                  </ol>
+                ) : null}
+              </div>
+            ))
+          : seo.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+        {seo.path === '/' ? (
+          <p>
+            This tool is part of the{' '}
+            <a href={WEB_FREE_HUB_URL} rel="noopener noreferrer">
+              web-free.site
+            </a>{' '}
+            collection of free browser utilities. For a step-by-step walkthrough focused on QA, see the{' '}
+            <a href={WEB_FREE_GUIDE_URL} rel="noopener noreferrer">
+              fake address generator guide
+            </a>{' '}
+            on Web Free.
+          </p>
+        ) : null}
         <AdSlot slot="content468x60" className="ad-content" />
         <h2>{locale === 'fr' ? 'FAQ' : 'FAQ'}</h2>
         <dl className="faq">
