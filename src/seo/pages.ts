@@ -1,4 +1,5 @@
 import { SITE } from '../site'
+import homepageStatic from './homepage-static.json'
 
 export interface SeoContentSection {
   heading?: string
@@ -22,29 +23,6 @@ export interface SeoPage {
 export const WEB_FREE_HUB_URL = 'https://web-free.site/?ref=free-fake-address-generator'
 export const WEB_FREE_GUIDE_URL =
   'https://web-free.site/guides/fake-address-generator-testing-only/?ref=free-fake-address-generator'
-
-const homeFaqEn = [
-  {
-    q: 'Are these real addresses?',
-    a: 'No. Every street, city, and postal code is randomly generated sample data for software testing. Do not assume mail can be delivered or that a residence exists at that location.',
-  },
-  {
-    q: 'Is my data sent to a server?',
-    a: 'No. Generation runs entirely in your browser using the open-source Faker library. We do not store or log the addresses you create.',
-  },
-  {
-    q: 'Can I export many addresses at once?',
-    a: 'Yes. Set a bulk quantity (up to 500), generate a batch, then download CSV or JSON for fixtures, seed scripts, and QA datasets.',
-  },
-  {
-    q: 'Which countries are supported?',
-    a: 'You can generate United States, United Kingdom, and Canada-style addresses, with state, province, or region pickers so postal codes match common validation rules.',
-  },
-  {
-    q: 'Is it legal to use fake addresses for testing?',
-    a: 'Using fictional addresses for development, demos, staging, and form QA is standard practice. Do not use generated data for fraud, impersonation, KYC bypass, or ordering goods to be delivered.',
-  },
-]
 
 export function canonicalFor(path: string): string {
   const p = path === '/fr' ? '/fr/generateur-adresse-factice' : path
@@ -97,44 +75,11 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'Free Fake Address Generator — Random Test Addresses by Country',
     description:
       'Free Fake Address Generator creates random US, UK, and Canada mailing addresses for software testing. Street, city, postal code, phone. In your browser—no sign-up.',
-    h1: 'Free Fake Address Generator',
+    h1: homepageStatic.h1,
     keywords: 'fake address generator, random address, test data, fakexy alternative',
     paragraphs: [],
-    sections: [
-      {
-        paragraphs: [
-          'Free Fake Address Generator creates realistic-looking but fictional mailing addresses you can paste into checkout forms, CRM imports, and API tests. Each record includes street lines, city, state or region, postal codes, and optional phone numbers and names—enough detail for validation rules without pointing at a real household.',
-          'The tool is built for software testing and prototyping, not for deliveries or account fraud. If you need plausible strings for screenshots, demo videos, or staging databases, you can generate one address or hundreds without signing up or requesting an API key.',
-        ],
-      },
-      {
-        heading: 'How to use the fake address generator',
-        orderedList: [
-          'Open the generator above and choose a country (United States, United Kingdom, or Canada). Country-specific pages in the header preset the same tool for one locale.',
-          'Optionally pick a state, province, or region, or leave the selector on random so each click varies the location.',
-          'Add an optional city name if your test needs a fixed locality, or leave the field blank for a random city from the Faker locale data.',
-          'Toggle “Include random name” when your form expects a full persona, set bulk quantity if you need many rows, then click generate.',
-          'Copy fields to the clipboard or download CSV or JSON when you want fixtures for automated tests, Postman collections, or database seeds.',
-        ],
-      },
-      {
-        heading: 'Privacy: everything runs in your browser',
-        paragraphs: [
-          'Address generation uses the MIT-licensed @faker-js/faker library loaded into the page. Values are computed on your device; they are not uploaded to our servers for processing or storage. That local-only model suits security reviews, air-gapped VMs, and teams that avoid sending PII-shaped test data through third-party APIs.',
-          'We still show ads and use standard site analytics like other pages on this domain, but the random addresses themselves never leave your tab unless you copy or export them. Clear your browser tab when you are done on a shared computer.',
-        ],
-      },
-      {
-        heading: 'Common use cases for random test addresses',
-        paragraphs: [
-          'Quality assurance engineers use bulk export to fill regression suites that hit address validation, tax calculators, and shipping-rate APIs. Product designers drop sample addresses into Figma-linked prototypes and marketing landing pages. Backend developers seed staging tables before user-acceptance testing so reviewers see varied postal formats instead of repeated placeholders.',
-          'Educational projects and hackathon demos benefit from believable data without scraping public directories or reusing a teammate’s home address. When a validator rejects a postal code, regenerate once or lock the region that matches your form’s rule set—US pages emphasize ZIP-by-state patterns, UK pages use postcode shapes, and Canada pages respect province codes.',
-          'Compare this approach with reserved documentation examples (such as example.com-style placeholders): fictional Faker output rotates on demand, which helps load tests and uniqueness constraints. Pair addresses with the site’s fake name generator when you need matching personas for the same sprint.',
-          'For a deeper walkthrough of responsible usage, read the companion articles linked in the site footer and the Web Free how-to guide below.',
-        ],
-      },
-    ],
-    faq: homeFaqEn,
+    sections: homepageStatic.sections as SeoContentSection[],
+    faq: homepageStatic.faq,
   },
   {
     path: '/us-address-generator',

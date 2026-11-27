@@ -1,5 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import {
+  buildHomepageStaticSection,
+  ensureHomepageFaqJsonLd,
+} from './homepage-static-html.mjs'
 
 const HOST = 'https://free-fake-address-generator.web-free.site'
 const dist = path.resolve('dist')
@@ -112,4 +116,17 @@ for (const page of pages) {
   fs.writeFileSync(path.join(dir, 'index.html'), buildPage(page))
 }
 
-console.log('Prerendered', pages.length, 'route shells')
+const indexPath = path.join(dist, 'index.html')
+let indexHtml = fs.readFileSync(indexPath, 'utf8')
+indexHtml = indexHtml.replace(/<section id="seo-prerender"[\s\S]*?<\/section>\s*/i, '')
+const homeBlock = buildHomepageStaticSection()
+indexHtml = indexHtml.replace('<div id="root"></div>', `${homeBlock}<div id="root"></div>`)
+indexHtml = ensureHomepageFaqJsonLd(indexHtml)
+fs.writeFileSync(indexPath, indexHtml)
+
+const h1Count = (indexHtml.match(/<h1/gi) ?? []).length
+if (h1Count !== 1) {
+  throw new Error(`dist/index.html must contain exactly one <h1> (found ${h1Count})`)
+}
+
+console.log('Prerendered', pages.length, 'route shells + homepage static HTML')
